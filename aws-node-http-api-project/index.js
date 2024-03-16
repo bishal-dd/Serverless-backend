@@ -1,11 +1,12 @@
 const nodemailer = require("nodemailer");
+require("dotenv").config();
 
 // Create a transporter using SMTP transport
 let transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "lightwebx@gmail.com", // your email
-    pass: "zvyiuzvotjjsoeyy", // your password
+    user: process.env.SEND_MAIL, // your email
+    pass: process.env.PASSWORD, // your password
   },
 });
 
@@ -15,8 +16,8 @@ module.exports.handler = async (event) => {
 
   // Setup email data
   let mailOptions = {
-    from: "lightwebx@gmail.com",
-    to: "dhakalbishal930@gmail.com",
+    from: process.env.EMAIL_USER,
+    to: process.env.RECEIVE_MAIL,
     subject: "User Mail",
     html: `<b>Name</b>: ${name}<br>
            <b>Email</b>: ${email}<br>
@@ -42,8 +43,8 @@ module.exports.emailList = async (event) => {
 
   // Setup email data
   let mailOptions = {
-    from: "lightwebx@gmail.com",
-    to: "dhakalbishal930@gmail.com",
+    from: process.env.EMAIL_USER,
+    to: process.env.RECEIVE_MAIL,
     subject: "Email List",
     html: `<b>Email</b>: ${email}`,
   };
