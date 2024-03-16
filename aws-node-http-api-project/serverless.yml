@@ -1,0 +1,22 @@
+org: bishal1234
+app: aws-node-http-api-project
+service: aws-node-http-api-project
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+
+functions:
+  api:
+    handler: index.handler
+    events:
+      - httpApi:
+          path: /
+          method: post
+  emailList:
+    handler: index.emailList
+    events:
+      - httpApi:
+          path: /emailList
+          method: post
